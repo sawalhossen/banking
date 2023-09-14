@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//Encapsulating the balance as a protected member of BankAccount
 class BankAccount {
 protected:
     int balance;
@@ -19,6 +20,7 @@ public:
         }
     }
 
+    //Polymorphism: Using a pure virtual function to create an abstract method
     virtual void withdraw(int amount) = 0;
     virtual void displayBalance() const {
         cout << "Current Balance: " << balance << " Taka" << endl;
@@ -32,7 +34,7 @@ public:
 class User : public BankAccount {
 public:
     User() {}
-
+        //Polymorphism: Implementing the withdraw method differently for User
     void withdraw(int amount) override {
         if (amount > 0 && amount <= balance) {
             balance -= amount;
@@ -45,6 +47,7 @@ public:
 
 class Printable {
 public:
+    //Abstraction: Creating an abstract class with a pure virtual function
     virtual void printInfo() const = 0;
 };
 
@@ -56,6 +59,7 @@ private:
 public:
     UserInfo(string n, int accNum) : name(n), accountNumber(accNum) {}
 
+    //Polymorphism: Implementing the printInfo method differently for UserInfo
     void printInfo() const override {
         cout << "Name: " << name << endl;
         cout << "Account Number: " << accountNumber << endl;
@@ -66,6 +70,7 @@ class CheckingAccount : public BankAccount {
 public:
     CheckingAccount() {}
 
+    //Polymorphism: Implementing the withdraw method differently for CheckingAccount
     void withdraw(int amount) override {
         if (amount > 0 && amount <= balance) {
             balance -= amount;
@@ -75,6 +80,7 @@ public:
         }
     }
 
+    //// Overriding deposit method
     void deposit(int amount) {
         if (amount > 0) {
             balance += amount;
@@ -89,6 +95,7 @@ class SavingsAccount : public BankAccount {
 public:
     SavingsAccount() {}
 
+    //Polymorphism: Implementing the withdraw method differently for SavingsAccount
     void withdraw(int amount) override {
         if (amount > 0 && amount <= balance) {
             // Apply additional logic for savings withdrawal, such as interest calculations
@@ -99,6 +106,7 @@ public:
         }
     }
 
+    //// Overriding deposit method
     void deposit(int amount) {
         if (amount > 0) {
             balance += amount;
@@ -183,6 +191,7 @@ int main() {
         }
     }
 
+    //Inheritance: Creating an object of the derived class UserInfo
     UserInfo userInfo("John Doe", 123456);
     userInfo.printInfo();
 
